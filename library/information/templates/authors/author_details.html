@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>{{ object.name }}</h1>
+    <p>{{ object.birth_date }}</p>
+    <p>{{ object.biography }}</p>
+    <a href="/author/{{ object.id }}/update" class="btn btn-success">edit</a>
+    <a href="/author/{{ object.id }}/delete" class="btn btn-danger">delete</a>
+    
+{% endblock %}

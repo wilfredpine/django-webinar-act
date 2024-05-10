@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block topbar %}
+{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href="/"><strong class="text-success">Library</strong></a>
+
+    </div>
+</nav>
+
+
+  <div class="container mt-5">
+
+    <div class="row justify-content-center pt-5">
+
+        <div class="col-sm-3 mb-2">
+            <div class="card">
+                <div class="card-body">
+                    <form action="" method="post">
+                        <h6 class="card-title">Login Form</h6>
+                        <small>Not yet register? click <a href="{% url 'signup' %}">here</a>.</small>
+                        {% if message %}<br><small class="text-danger">{{ message }}</small>{% endif %}
+                        <hr>
+                        {% csrf_token %}
+
+                        {{ form.username.label_tag }}
+                        {{ form.username }}
+                        {% if form.username.errors %}
+                            <small class="text-danger">{{ form.username.errors.as_text }}</small><br>
+                        {% endif %}
+                        
+                        {{ form.password.label_tag }}
+                        {{ form.password }}
+                        {% if form.password.errors %}
+                            <small class="text-danger">{{ form.password.errors.as_text }}</small><br>
+                        {% endif %}
+
+                        <br>
+                        <input type="submit" class="btn btn-success btn-sm" value="Login">
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+  </div>
+
+  
+{% endblock %}
+
+

@@ -1,0 +1,17 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>{{ object.title }}</h1>
+    <p>{{ object.publication_year }}</p>
+    <p>{{ object.isbn }}</p>
+    <p>
+        {% for author in object.author.all %}
+            {{ author.name }}, 
+        {% endfor %}
+    </p>
+    <a href="/book/{{ object.id }}/update" class="btn btn-success">edit</a>
+    <a href="/book/{{ object.id }}/delete" class="btn btn-danger">delete</a>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Book List</h1>
+    <a href="{% url 'book_create' %}" class="btn btn-success">Add book</a>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Year</th>
+            <th scope="col">ISBN</th>
+            <th scope="col">Author</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for book in object_list %}
+            <tr>
+                <td>
+                    <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a>
+                </td>
+                <td>
+                    {{ book.publication_year }}
+                </td>
+                <td>
+                    {{ book.isbn }}
+                </td>
+                <td>
+                    {% for author in book.author.all %}
+                        {{ author.name }}, 
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+{% endblock %}
