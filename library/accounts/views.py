@@ -14,7 +14,7 @@ class signup(CreateView):
     template_name = 'signup.html'
     success_url = reverse_lazy('login')
 
-class login(LoginView):
+class sigin(LoginView):
     template_name = 'login.html'
     
     def get_context_data(self, **kwargs):
@@ -29,6 +29,7 @@ class login(LoginView):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(request, username=username, password=password)
+            print(user)
             if user is not None:
                 login(request, user)
                 return redirect('index')
@@ -36,7 +37,7 @@ class login(LoginView):
                 message = "Invalid username or password."
         return render(request, self.template_name, {'form': form, 'message': message})
 
-def logout(request):
+def signout(request):
     logout(request)
     messages.success(request, "You were logged out.")
     return redirect('login')
